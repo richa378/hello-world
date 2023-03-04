@@ -1,0 +1,80 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+// } Driver Code Ends
+//User function template for C++
+class Solution{
+public:
+	int search(string pat, string txt) {
+	    // code here
+	    map <char,long long >m,m1;
+	    long long K = pat.length();
+	    long long  N = txt.length();
+	    int count =0;
+	    int ans=0;
+	     //create map with count of each letter in thr pattern
+        for (const char &c: pat) {
+            m1[c]++;    // increment map's value for key `c`
+        }
+        //count is the total number of keys
+         for (auto &e:m1) {
+     //  std::cout << '{' << e.first << ", " << e.second << '}' << std::endl;
+    }
+	    m=m1;
+	    count = m1.size();
+	  //  std::cout << "size" << count;
+	    int i=0,j=0;
+	    while(j< N){
+           //reduce the key in map if we find it in text , if key points to zero
+           // reduce the count as well
+           //if count == 0 , meaning all keys have been reduced to zero, so count it as 1 anagram
+	        if(m.find(txt[j])!=m.end()){
+	            m[txt[j]]--;
+	            if(m[txt[j]] == 0) {
+	                count --;
+	            }
+	        }
+	        if(j-i+1 < K){
+	            j++;
+	        } else if( j-i +1 == K){
+	            if(count == 0 ){
+	                ans++;
+	              //  std::cout << "{" << m[txt[j]] << ans << "}" << std::endl;
+	             //   m = m1;
+	             //   count = m.size();
+	            }
+              // this is for sliding the window , slide the window by 1 and handle the i calculation in mao
+              increment it by 1, if it is 1 . count should be increased to 1
+	            if(m.find(txt[i])!= m.end()){
+	                m[txt[i]]++;
+	                if(m[txt[i]] == 1)
+	                count++;
+	            }
+	            i++;
+	            j++;
+	            
+	        }
+	    }
+	    return ans;
+	}
+
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        string pat, txt;
+        cin >> txt >> pat;
+        Solution ob;
+        auto ans = ob.search(pat, txt);
+        cout << ans << "\n";
+    }
+    return 0;
+}
+// } Driver Code Ends
