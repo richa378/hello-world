@@ -1,4 +1,4 @@
-# Array and Strings
+# Sliding Window
 
-excited !.. using github for the first time.
+Arrays and Strings
 my name is richa rani and i am a graduate from kiit university.
